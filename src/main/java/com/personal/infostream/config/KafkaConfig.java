@@ -26,22 +26,10 @@ public class KafkaConfig {
     private String valueSerializer;
 
     @Bean
-    public NewTopic tempTopic(){
-        return TopicBuilder.name("temperature-data")
+    public NewTopic tempTopic() {
+        return TopicBuilder.name("data-temp")
                 .partitions(3)
-                .replicas(3)
-                .config(
-                TopicConfig.RETENTION_MS_CONFIG,
-                String.valueOf(Duration.ofDays(7).toMillis())
-        )
-                .build();
-    }
-
-    @Bean
-    public NewTopic voltTopic(){
-        return TopicBuilder.name("volt-data")
-                .partitions(3)
-                .replicas(3)
+                .replicas(1)
                 .config(
                         TopicConfig.RETENTION_MS_CONFIG,
                         String.valueOf(Duration.ofDays(7).toMillis())
@@ -50,10 +38,22 @@ public class KafkaConfig {
     }
 
     @Bean
-    public NewTopic wattTopic(){
-        return TopicBuilder.name("watt-data")
+    public NewTopic voltTopic() {
+        return TopicBuilder.name("data-volt")
                 .partitions(3)
-                .replicas(3)
+                .replicas(1)
+                .config(
+                        TopicConfig.RETENTION_MS_CONFIG,
+                        String.valueOf(Duration.ofDays(7).toMillis())
+                )
+                .build();
+    }
+
+    @Bean
+    public NewTopic wattTopic() {
+        return TopicBuilder.name("data-watt")
+                .partitions(3)
+                .replicas(1)
                 .config(
                         TopicConfig.RETENTION_MS_CONFIG,
                         String.valueOf(Duration.ofDays(7).toMillis())
@@ -74,7 +74,7 @@ public class KafkaConfig {
         );
         props.put(
                 ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
-               valueSerializer
+                valueSerializer
         );
         return SenderOptions.create(props);
     }

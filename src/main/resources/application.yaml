@@ -1,3 +1,10 @@
 producer:
   keySerializer: org.apache.kafka.common.serialization.StringSerializer
   valueSerializer: org.springframework.kafka.support.serializer.JsonSerializer
+spring:
+  config:
+    import: optional:file:.env[.properties]
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
+  server:
+    port: 8081
