@@ -28,7 +28,7 @@ public class TestOptionsServiceIMpl implements TestOptionsService {
                         (Math.random() * 5) + 15
                 );
                 data.setType(
-                        testOptions.getTypes()[(int) (Math.random() * testOptions.getTypes().length)]g
+                        testOptions.getTypes()[(int) (Math.random() * testOptions.getTypes().length)]
                 );
                 data.setTimestamp(
                         LocalDateTime.now()

@@ -6,5 +6,6 @@ spring:
     import: optional:file:.env[.properties]
   kafka:
     bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
-  server:
+server:
     port: 8081
+
